@@ -9,7 +9,7 @@ class NotificationServiceModule {
     @MessageQualifier
     @Provides
     fun getMessageService(): NotificationService {
-        return MessageServie()
+        return MessageService()
     }
 
     @Named("email")
