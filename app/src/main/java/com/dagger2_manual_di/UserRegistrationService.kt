@@ -1,13 +1,16 @@
 package com.dagger2_manual_di
 
-class UserRegistrationService(
+import javax.inject.Inject
+import javax.inject.Named
+
+class UserRegistrationService @Inject constructor(
     private val userRepository: UserRepository,
-    private val emailService: EmailService
+    @MessageQualifier private val notificationService: NotificationService
 ) {
 
     fun registerUser(email: String, password: String) {
         userRepository.saveUser(email, password)
-        emailService.send(email, "no-reply@email.com", "User Registered")
+        notificationService.send(email, "no-reply@email.com", "User Registered")
     }
 }
 
